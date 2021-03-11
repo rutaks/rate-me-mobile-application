@@ -3,7 +3,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {routingConfig} from '../../config/routing-config';
 import {Colors, Dimensions, Typography} from '../../styles';
-import {ActivityScreen, HomeScreen} from '../../screens';
+import {ActivityScreen, HomeScreen, ProfileScreen} from '../../screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -47,11 +47,14 @@ const HomeNavigator = () => (
         paddingRight: Dimensions.SIZE_XL * 2,
       },
     }}>
-    <Tab.Screen name={routingConfig.screens.Profile} component={HomeScreen} />
-    <Tab.Screen name={routingConfig.screens.Home} component={HomeScreen} />
     <Tab.Screen
       name={routingConfig.screens.Activity}
       component={ActivityScreen}
+    />
+    <Tab.Screen name={routingConfig.screens.Home} component={HomeScreen} />
+    <Tab.Screen
+      name={routingConfig.screens.Profile}
+      component={ProfileScreen}
     />
   </Tab.Navigator>
 );

@@ -30,9 +30,4 @@ export const styles = StyleSheet.create({
     ...Typography.body,
     flex: 1,
   },
-  error: {
-    ...Typography.body,
-    color: Colors.RED,
-    paddingBottom: 10,
-  },
 });

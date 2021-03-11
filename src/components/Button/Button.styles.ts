@@ -36,6 +36,9 @@ export const styles = StyleSheet.create({
   buttonDefault: {
     backgroundColor: Colors.WHITE,
   },
+  buttonDanger: {
+    backgroundColor: Colors.DARK_GREEN,
+  },
   buttonDisabled: {
     borderColor: Colors.GRAY,
   },

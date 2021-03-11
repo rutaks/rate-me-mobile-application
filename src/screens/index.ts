@@ -4,4 +4,5 @@ export {default as ForgotPasswordScreen} from './ForgotPasswordScreen';
 export {default as SendReviewScreen} from './SendReviewScreen';
 export {default as ActivityScreen} from './ActivityScreen';
 export {default as HomeScreen} from './HomeScreen';
+export {default as ProfileScreen} from './ProfileScreen';
 export {default as ReviewDetailsScreen} from './ReviewDetailsScreen';

@@ -36,6 +36,8 @@ const Button = ({
         return styles.buttonPrimary;
       case ButtonStyle.SECONDARY:
         return styles.buttonSecondary;
+      case ButtonStyle.DANGER:
+        return styles.buttonDanger;
       case ButtonStyle.DEFAULT:
         return styles.buttonDefault;
       default:

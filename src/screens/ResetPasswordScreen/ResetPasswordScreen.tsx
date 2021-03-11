@@ -8,7 +8,7 @@ import {ButtonStyle} from '../../enums';
 /**
  * Function component representing Forgot password screen
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const ResetPasswordScreen = ({

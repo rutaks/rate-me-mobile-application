@@ -7,7 +7,7 @@ import {BasicTopBarProps} from '../../interfaces/basic-top-bar-props.interface';
 
 /**
  * Functional component representing a navigation top bar
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @since version 1.0
  */
 const BasicTopBar = (props: BasicTopBarProps) => {

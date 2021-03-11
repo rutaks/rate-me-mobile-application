@@ -2,8 +2,9 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {routingConfig} from '../../config/routing-config';
-import {Colors, Dimensions, Typography} from '../../styles';
+import {Colors, Dimensions, Font, Typography} from '../../styles';
 import {ActivityScreen, HomeScreen, ProfileScreen} from '../../screens';
+import {Text, View} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,7 +12,28 @@ const HomeNavigator = () => (
   <Tab.Navigator
     initialRouteName={routingConfig.screens.Home}
     screenOptions={({route}) => ({
-      tabBarIcon: ({focused, color, size}) => {
+      tabBarLabel: ({focused}) => {
+        return focused ? (
+          <Text
+            style={{
+              ...Font.bold,
+              fontSize: Dimensions.FONT_SIZE_SM,
+              color: Colors.PRIMARY,
+            }}>
+            {route.name}
+          </Text>
+        ) : (
+          <Text
+            style={{
+              ...Font.medium,
+              fontSize: Dimensions.FONT_SIZE_SM,
+              color: Colors.GRAY,
+            }}>
+            {route.name}
+          </Text>
+        );
+      },
+      tabBarIcon: ({focused, size}) => {
         let iconName: any;
 
         switch (route.name) {
@@ -22,7 +44,7 @@ const HomeNavigator = () => (
             iconName = focused ? 'face-profile' : 'face-profile';
             break;
           case routingConfig.screens.Activity:
-            iconName = focused ? 'state-machine' : 'state-machine';
+            iconName = focused ? 'content-save' : 'content-save';
             break;
           default:
             break;
@@ -31,16 +53,21 @@ const HomeNavigator = () => (
           iconName = focused ? 'binoculars' : 'binoculars';
         }
         return (
-          <MaterialCommunityIcons name={iconName} size={size} color={color} />
+          <View>
+            <MaterialCommunityIcons
+              name={iconName}
+              size={size}
+              color={Colors.BLACK}
+            />
+          </View>
         );
       },
     })}
     tabBarOptions={{
       activeTintColor: Colors.PRIMARY,
       inactiveTintColor: Colors.GRAY,
-      labelStyle: {...Typography.label},
       style: {
-        marginTop: Dimensions.SIZE_SM,
+        paddingTop: Dimensions.SIZE_SM,
         paddingBottom: Dimensions.SIZE_SM,
         height: Dimensions.SIZE_XL * 2.5,
         paddingLeft: Dimensions.SIZE_XL * 2,

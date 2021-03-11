@@ -9,7 +9,7 @@ import {ButtonStyle} from '../../enums';
 /**
  * Function component representing Login screen
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const LoginScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {

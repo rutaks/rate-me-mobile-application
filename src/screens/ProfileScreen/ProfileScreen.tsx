@@ -9,7 +9,7 @@ import {styles} from './ProfileScreen.styles';
 /**
  * Function component representing profile screen
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const ProfileScreen = () => {

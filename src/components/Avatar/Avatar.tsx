@@ -6,7 +6,7 @@ import {styles} from './Avatar.styles';
 /**
  * Functional component representing an avatar
  * @param props Avatar props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @since version 1.0
  */
 const Avatar = ({source, onTap, imageStyles}: AvatarProps) => (

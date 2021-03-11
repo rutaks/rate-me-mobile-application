@@ -17,7 +17,7 @@ import {Colors, Dimensions, Typography} from '../../styles';
 /**
  * Function component representing Home screen
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const SendReviewScreen = ({
@@ -28,7 +28,7 @@ const SendReviewScreen = ({
   const [noStars, setNoStars] = useState(0);
   const navigateToGiveList = (): any => {
     requestAnimationFrame(() => {
-      navigation.navigate(routingConfig.screens.ReviewDetails);
+      navigation.navigate(routingConfig.screens.Activity);
     });
   };
 
@@ -52,7 +52,7 @@ const SendReviewScreen = ({
           <Text style={styles.reviewerName}>Yves Honore Bisemage</Text>
           <Text
             style={{...Typography.body, paddingBottom: Dimensions.SIZE_XS / 2}}>
-            Awesomity Lab
+            Yves Honore Bisemage
           </Text>
           <View style={styles.starsRow}>
             <Text style={styles.noStarsText}>{noStars + 1}</Text>

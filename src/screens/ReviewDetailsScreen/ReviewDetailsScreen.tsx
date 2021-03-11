@@ -9,7 +9,7 @@ import {Colors, Dimensions, Typography} from '../../styles';
 /**
  * Function component representing review details screen
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const ReviewDetailsScreen = () => {
@@ -27,7 +27,7 @@ const ReviewDetailsScreen = () => {
           <Text style={styles.reviewerName}>Yves Honore Bisemage</Text>
           <Text
             style={{...Typography.body, paddingBottom: Dimensions.SIZE_XS / 2}}>
-            Awesomity Lab
+            Yves Honore Bisemage
           </Text>
           <View style={styles.starsRow}>
             <Text style={styles.noStarsText}>{noStars + 1}</Text>

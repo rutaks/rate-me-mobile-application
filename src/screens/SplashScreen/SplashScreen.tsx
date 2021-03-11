@@ -8,7 +8,7 @@ import {styles} from './SplashScreen.styles';
 /**
  * Function component representing splash screen
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const SplashScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {

@@ -14,7 +14,7 @@ import {Colors} from '../../styles';
 /**
  * Function component representing custom button
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const Button = ({

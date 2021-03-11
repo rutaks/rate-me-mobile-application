@@ -7,55 +7,55 @@ import {styles} from './ActivityScreen.styles';
 const reviews = [
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
   {
     name: 'Yves Honore Bisemage',
-    place: 'Awesomity Lab',
+    place: 'Yves Honore Bisemage',
     noStars: 4,
     reviewDate: new Date(),
   },
@@ -64,7 +64,7 @@ const reviews = [
 /**
  * Function component representing activity screen
  * @param props
- * @author Awesomity Lab
+ * @author Yves Honore Bisemage
  * @version 1.0
  */
 const ActivityScreen = () => {

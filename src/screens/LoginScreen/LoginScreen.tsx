@@ -2,9 +2,10 @@ import React, {Fragment} from 'react';
 import {Image, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import {Button, FormTextInput} from '../../components';
 import {styles} from './LoginScreen.styles';
-import {NavigationProp} from '@react-navigation/native';
+import {NavigationProp, StackActions} from '@react-navigation/native';
 import {routingConfig} from '../../config/routing-config';
 import {ButtonStyle} from '../../enums';
+
 /**
  * Function component representing Login screen
  * @param props
@@ -24,6 +25,14 @@ const LoginScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
     });
   };
 
+  const navigateToHome = (): any => {
+    requestAnimationFrame(() => {
+      navigation.dispatch(
+        StackActions.replace(routingConfig.navigators.LoggedIn),
+      );
+    });
+  };
+
   return (
     <SafeAreaView style={styles.fill}>
       <ScrollView contentContainerStyle={styles.fill}>
@@ -39,7 +48,7 @@ const LoginScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
             <Button
               text="LOGIN"
               type={ButtonStyle.PRIMARY}
-              onClick={() => {}}
+              onClick={() => navigateToHome()}
             />
             <Button
               text="Forgot Password?"

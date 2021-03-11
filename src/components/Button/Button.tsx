@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   GestureResponderEvent,
+  Pressable,
   StyleProp,
   Text,
-  TouchableOpacity,
   ViewStyle,
 } from 'react-native';
 import {styles} from './Button.styles';
 import {ButtonStyle} from '../../enums';
+import {Colors} from '../../styles';
 
 /**
  * Function component representing custom button
@@ -57,9 +58,25 @@ const Button = ({
     }
   };
 
+  const buttonRipple = (btnTextStyle: ButtonStyle) => {
+    switch (btnTextStyle) {
+      case ButtonStyle.PRIMARY:
+        return {color: Colors.WHITE};
+      case ButtonStyle.SECONDARY:
+        return {color: Colors.DARK_GRAY};
+      case ButtonStyle.DANGER:
+        return {color: Colors.DARK_GRAY};
+      case ButtonStyle.DEFAULT:
+        return {color: Colors.DARK_GRAY};
+      default:
+        break;
+    }
+  };
+
   return (
-    <TouchableOpacity
+    <Pressable
       disabled={isLoading}
+      android_ripple={buttonRipple(type)}
       style={[
         styles.container,
         getButtonStyle(type),
@@ -75,7 +92,7 @@ const Button = ({
         ]}>
         {text}
       </Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

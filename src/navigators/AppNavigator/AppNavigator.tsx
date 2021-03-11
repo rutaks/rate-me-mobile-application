@@ -1,22 +1,19 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {linking, routingConfig} from '../../config/routing-config';
+import {routingConfig} from '../../config/routing-config';
 import {createStackNavigator} from '@react-navigation/stack';
-// import ResetPasswordScreen from '../../screens/ResetPasswordScreen';
 import AuthNavigator from '../AuthNavigator';
 import ResetPasswordScreen from '../../screens/ResetPasswordScreen';
-// import HomeNavigator from '../HomeNavigator';
-// import NavigationService from '../../service/navigation-service';
+import LoggedInNavigator from '../LoggedInNavigator';
 
 const SharedElementStack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer
-      ref={(navigatorRef) => {
+      ref={(_) => {
         // NavigationService.setTopLevelNavigator(navigatorRef);
-      }}
-      linking={linking}>
+      }}>
       <SharedElementStack.Navigator headerMode="none">
         <SharedElementStack.Screen
           name={routingConfig.navigators.Auth}
@@ -26,13 +23,13 @@ const AppNavigator = () => {
           name={routingConfig.screens.ResetPassword}
           component={ResetPasswordScreen}
         />
-        {/* <SharedElementStack.Screen
+        <SharedElementStack.Screen
           options={{
             gestureEnabled: false,
           }}
-          name={routingConfig.navigators.Home}
-          component={HomeNavigator}
-        /> */}
+          name={routingConfig.navigators.LoggedIn}
+          component={LoggedInNavigator}
+        />
       </SharedElementStack.Navigator>
     </NavigationContainer>
   );

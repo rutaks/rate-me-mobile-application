@@ -2,8 +2,8 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {routingConfig} from '../../config/routing-config';
-import HomeScreen from '../../screens/HomeScreen';
 import {Colors, Dimensions, Typography} from '../../styles';
+import {ActivityScreen, HomeScreen} from '../../screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -49,7 +49,10 @@ const HomeNavigator = () => (
     }}>
     <Tab.Screen name={routingConfig.screens.Profile} component={HomeScreen} />
     <Tab.Screen name={routingConfig.screens.Home} component={HomeScreen} />
-    <Tab.Screen name={routingConfig.screens.Activity} component={HomeScreen} />
+    <Tab.Screen
+      name={routingConfig.screens.Activity}
+      component={ActivityScreen}
+    />
   </Tab.Navigator>
 );
 

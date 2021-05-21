@@ -2,7 +2,7 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {routingConfig} from '../../config/routing-config';
-import {Colors, Dimensions, Font, Typography} from '../../styles';
+import {Colors, Dimensions, Font} from '../../styles';
 import {ActivityScreen, HomeScreen, ProfileScreen} from '../../screens';
 import {Text, View} from 'react-native';
 

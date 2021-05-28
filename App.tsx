@@ -9,12 +9,17 @@
  */
 
 import React from 'react';
+import ApiProvider from './src/context/Api/ApiProvider';
 import {AppNavigator} from './src/navigators';
 
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
-  return <AppNavigator />;
+  return (
+    <ApiProvider>
+      <AppNavigator />
+    </ApiProvider>
+  );
 };
 
 export default App;

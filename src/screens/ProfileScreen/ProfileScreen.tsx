@@ -1,9 +1,13 @@
+import {StackActions, useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {ScrollView, Image, View, Text} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {Avatar, BasicTopBar, Button, EditProfileRow} from '../../components';
+import {routingConfig} from '../../config/routing-config';
 import {ButtonStyle} from '../../enums';
 import {Dimensions, Typography} from '../../styles';
+import {displayLongMessage} from '../../utils/prompts.util';
+import {setAccessToken} from '../../utils/token-storage.util';
 import {styles} from './ProfileScreen.styles';
 
 /**
@@ -13,6 +17,7 @@ import {styles} from './ProfileScreen.styles';
  * @version 1.0
  */
 const ProfileScreen = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.fill}>
       <ScrollView contentContainerStyle={styles.fill}>
@@ -51,7 +56,19 @@ const ProfileScreen = () => {
             paddingLeft: Dimensions.SIZE_L,
             paddingRight: Dimensions.SIZE_XL,
           }}>
-          <Button type={ButtonStyle.DANGER} text="LOGOUT" />
+          <Button
+            type={ButtonStyle.DANGER}
+            text="LOGOUT"
+            onClick={() => {
+              setAccessToken('');
+              displayLongMessage('Logged out successfully');
+              requestAnimationFrame(() => {
+                navigation.dispatch(
+                  StackActions.replace(routingConfig.navigators.Auth),
+                );
+              });
+            }}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

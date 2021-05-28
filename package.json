@@ -17,6 +17,8 @@
     "appcenter": "^4.1.0",
     "appcenter-analytics": "^4.1.0",
     "appcenter-crashes": "^4.1.0",
+    "axios": "^0.21.1",
+    "formik": "^2.2.8",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-barcode-mask": "^1.2.4",
@@ -27,11 +29,13 @@
     "react-native-screens": "^2.18.1",
     "react-native-sensitive-info": "^6.0.0-alpha.8",
     "react-native-shared-element": "^0.7.0",
+    "react-native-snackbar": "^2.4.0",
     "react-native-tab-view": "^2.15.2",
     "react-native-vector-icons": "^8.1.0",
     "react-navigation": "^4.4.4",
     "react-navigation-shared-element": "^2.3.1",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

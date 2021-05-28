@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  ActivityIndicator,
   GestureResponderEvent,
   Pressable,
   StyleProp,
@@ -86,14 +87,11 @@ const Button = ({
         buttonStyle,
       ]}
       onPress={onClick}>
-      <Text
-        style={[
-          styles.buttonText,
-          buttonTextStyle(type),
-          isLoading && styles.buttonTextDisabled,
-        ]}>
-        {text}
-      </Text>
+      {isLoading ? (
+        <ActivityIndicator color={Colors.WHITE} />
+      ) : (
+        <Text style={[styles.buttonText, buttonTextStyle(type)]}>{text}</Text>
+      )}
     </Pressable>
   );
 };

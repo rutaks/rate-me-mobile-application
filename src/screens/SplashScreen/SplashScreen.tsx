@@ -1,8 +1,11 @@
 import {NavigationProp, StackActions} from '@react-navigation/native';
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {Image, Text, View} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 import {routingConfig} from '../../config/routing-config';
+import {useApi} from '../../context/Api';
+import {useIsUserLoggedIn} from '../../hooks/useIsUserLoggedIn';
+import {getAccessToken} from '../../utils/token-storage.util';
 import {styles} from './SplashScreen.styles';
 
 /**
@@ -12,14 +15,27 @@ import {styles} from './SplashScreen.styles';
  * @version 1.0
  */
 const SplashScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
-  const navigateToLogin = useCallback(() => {
-    navigation.dispatch(StackActions.replace(routingConfig.screens.Login));
+  const api: any = useApi(); // api context value
+  const navigateToHome = useCallback(() => {
+    getAccessToken().then((accessToken) => {
+      console.log('accessToken');
+      console.log(accessToken);
+
+      api.defaults.headers.common.Authorization = accessToken;
+      navigation.dispatch(
+        StackActions.replace(routingConfig.navigators.LoggedIn),
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 
-  useEffect(() => {
-    navigateToLogin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  console.log('HHHH');
+
+  const navigateToLogin = useCallback(() => {
+    navigation.dispatch(StackActions.replace(routingConfig.navigators.Auth));
+  }, [navigation]);
+
+  useIsUserLoggedIn(navigateToHome, navigateToLogin);
 
   return (
     <View style={styles.container}>

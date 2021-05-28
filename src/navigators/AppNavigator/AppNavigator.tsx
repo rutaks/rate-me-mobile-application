@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AuthNavigator from '../AuthNavigator';
 import ResetPasswordScreen from '../../screens/ResetPasswordScreen';
 import LoggedInNavigator from '../LoggedInNavigator';
+import {SplashScreen} from '../../screens';
 
 const SharedElementStack = createStackNavigator();
 
@@ -15,6 +16,10 @@ const AppNavigator = () => {
         // NavigationService.setTopLevelNavigator(navigatorRef);
       }}>
       <SharedElementStack.Navigator headerMode="none">
+        <SharedElementStack.Screen
+          name={routingConfig.screens.Splash}
+          component={SplashScreen}
+        />
         <SharedElementStack.Screen
           name={routingConfig.navigators.Auth}
           component={AuthNavigator}

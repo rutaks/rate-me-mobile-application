@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {SafeAreaView} from 'react-navigation';
 import {ScrollView, Text, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Avatar, BasicTopBar} from '../../components';
 import {styles} from './ReviewDetailsScreen.styles';
 import {Colors, Dimensions, Typography} from '../../styles';
+import {Route} from '@react-navigation/native';
 
 /**
  * Function component representing review details screen
@@ -12,8 +13,8 @@ import {Colors, Dimensions, Typography} from '../../styles';
  * @author Yves Honore Bisemage
  * @version 1.0
  */
-const ReviewDetailsScreen = () => {
-  const [noStars] = useState(1);
+const ReviewDetailsScreen = ({route}: {route: Route<any, any>}) => {
+  const {review}: any = route?.params;
 
   return (
     <SafeAreaView style={styles.fill}>
@@ -22,15 +23,19 @@ const ReviewDetailsScreen = () => {
         <View style={styles.content}>
           <Avatar
             imageStyles={styles.avatar}
-            source={require('../../../assets/images/avatar.png')}
+            source={
+              review.reviewee.profilePic
+                ? {uri: review.reviewee.profilePic}
+                : require('../../../assets/images/avatar.png')
+            }
           />
-          <Text style={styles.reviewerName}>Yves Honore Bisemage</Text>
+          <Text style={styles.reviewerName}>{review.reviewee.names}</Text>
           <Text
             style={{...Typography.body, paddingBottom: Dimensions.SIZE_XS / 2}}>
             Yves Honore Bisemage
           </Text>
           <View style={styles.starsRow}>
-            <Text style={styles.noStarsText}>{noStars + 1}</Text>
+            <Text style={styles.noStarsText}>{review.rating}</Text>
             <MaterialIcons
               style={{paddingTop: Dimensions.SIZE_XS}}
               name={'star'}
@@ -44,20 +49,16 @@ const ReviewDetailsScreen = () => {
               <MaterialIcons
                 key={i}
                 style={{paddingRight: Dimensions.SIZE_XL}}
-                name={noStars >= i ? 'star' : 'star-border'}
+                name={review.rating > i ? 'star' : 'star-border'}
                 size={Dimensions.FONT_SIZE_XL * 1.3}
                 color={Colors.BLACK}
               />
             ))}
           </View>
-          <Text style={styles.reviewText}>
-            Poor service, he took long to give our order, very unprofessional.
-            He even used unclean water to clean our cups, definitely not coming
-            back
-          </Text>
-          <Text style={styles.reviewDate}>14 Feb 2020</Text>
+          <Text style={styles.reviewText}>{review.description}</Text>
+          <Text style={styles.reviewDate}>{review?.reviewDate}</Text>
           <Text style={styles.reviewReceivedByText}>
-            Review received by The Manager
+            Review received by {review?.reviewer.names}
           </Text>
         </View>
       </ScrollView>

@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   avatar: {
-    width: Dimensions.SIZE_XL * 5,
-    height: Dimensions.SIZE_XL * 5,
+    width: Dimensions.SIZE_XL * 4,
+    height: Dimensions.SIZE_XL * 4,
     borderRadius: Dimensions.SIZE_XL * 5,
   },
   profileInfo: {
@@ -25,9 +25,10 @@ export const styles = StyleSheet.create({
   },
   name: {
     ...Typography.subtitle,
-    fontSize: Dimensions.FONT_SIZE_XL / 1.2,
+    fontSize: Dimensions.FONT_SIZE_XL / 1.5,
     color: Colors.BLACK,
     paddingBottom: Dimensions.SIZE_SM / 3,
+    paddingRight: Dimensions.SIZE_M,
   },
   fill: {
     flex: 1,

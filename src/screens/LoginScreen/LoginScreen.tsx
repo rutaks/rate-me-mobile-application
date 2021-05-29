@@ -47,7 +47,7 @@ const LoginScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
     onSuccess: () => {
       const {token} = loginHook.successResponse.payload;
       setAccessToken(token).then((accessToken) => {
-        api.defaults.headers.common.Authorization = accessToken;
+        api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
         displayLongMessage('Logged in successfully');
         navigateToHome();
       });
@@ -60,7 +60,9 @@ const LoginScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
 
   return (
     <SafeAreaView style={styles.fill}>
-      <ScrollView contentContainerStyle={styles.fill}>
+      <ScrollView
+        keyboardShouldPersistTaps={'handled'}
+        contentContainerStyle={styles.fill}>
         <View style={styles.container}>
           <Image
             source={require('../../../assets/images/logo.png')}

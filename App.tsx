@@ -10,6 +10,7 @@
 
 import React from 'react';
 import ApiProvider from './src/context/Api/ApiProvider';
+import CurrentViewProvider from './src/context/CurrentView/CurrentViewProvider';
 import {AppNavigator} from './src/navigators';
 
 declare const global: {HermesInternal: null | {}};
@@ -17,7 +18,9 @@ declare const global: {HermesInternal: null | {}};
 const App = () => {
   return (
     <ApiProvider>
-      <AppNavigator />
+      <CurrentViewProvider>
+        <AppNavigator />
+      </CurrentViewProvider>
     </ApiProvider>
   );
 };

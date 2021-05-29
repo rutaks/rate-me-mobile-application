@@ -16,7 +16,11 @@ export const useSignUp = () => {
       lastName: string;
       email: string;
       password: string;
+      gender: string;
     }) => {
+      console.log('reqBody');
+      console.log(reqBody);
+
       return await handleRequest({
         url: '/api/auth/sign-up',
         requestType: ApiRequestType.POST,

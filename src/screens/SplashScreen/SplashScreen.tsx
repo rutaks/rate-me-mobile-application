@@ -18,9 +18,6 @@ const SplashScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
   const api: any = useApi(); // api context value
   const navigateToHome = useCallback(() => {
     getAccessToken().then((accessToken) => {
-      console.log('accessToken');
-      console.log(accessToken);
-
       api.defaults.headers.common.Authorization = accessToken;
       navigation.dispatch(
         StackActions.replace(routingConfig.navigators.LoggedIn),
@@ -28,8 +25,6 @@ const SplashScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
-
-  console.log('HHHH');
 
   const navigateToLogin = useCallback(() => {
     navigation.dispatch(StackActions.replace(routingConfig.navigators.Auth));

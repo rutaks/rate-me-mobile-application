@@ -5,6 +5,7 @@ import {styles} from './ForgotPasswordScreen.styles';
 import {NavigationProp} from '@react-navigation/native';
 import {routingConfig} from '../../config/routing-config';
 import {ButtonStyle} from '../../enums';
+import {displayAlert} from '../../utils/prompts.util';
 /**
  * Function component representing Forgot password screen
  * @param props
@@ -42,7 +43,13 @@ const ForgotPasswordScreen = ({
             <Button
               text="SUBMIT"
               type={ButtonStyle.PRIMARY}
-              onClick={() => {}}
+              onClick={() => {
+                displayAlert({
+                  title: "Wasn't me",
+                  message:
+                    'The screen for this feature was not provided by the owner :)',
+                });
+              }}
             />
             <Button
               text="Back to login"

@@ -33,7 +33,7 @@ export const displayAlert = ({
   title: string;
   message?: string;
 }) => {
-  Alert.alert(title, message, [{text: 'OK', onPress: () => {}}], {
+  Alert.alert(title, message, [{text: 'Damn, OK', onPress: () => {}}], {
     cancelable: false,
   });
 };

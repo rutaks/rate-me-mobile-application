@@ -9,22 +9,33 @@ import {routingConfig} from '../../config/routing-config';
 
 const ReviewListItem = (props: {review: any}) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate(routingConfig.screens.ReviewDetails)}>
+      onPress={() =>
+        navigation.navigate(routingConfig.screens.ReviewDetails, {
+          review: props.review,
+        })
+      }>
       <View style={styles.leftArea}>
         <Avatar
           imageStyles={styles.avatar}
-          source={require('../../../assets/images/avatar.png')}
+          source={
+            props.review.reviewee.profilePic
+              ? {uri: props.review.reviewee.profilePic}
+              : require('../../../assets/images/avatar.png')
+          }
         />
       </View>
       <View style={styles.middleArea}>
-        <Text style={styles.reviewerName}>{props.review.name}</Text>
-        <Text style={{...Typography.caption}}>{props.review.place}</Text>
+        <Text style={styles.reviewerName}>{props.review.reviewee.names}</Text>
+        <Text style={{...Typography.caption}}>
+          {props.review.reviewee.email}
+        </Text>
         <View style={styles.reviewStarsArea}>
           <View style={styles.starsRow}>
-            <Text style={styles.noStarsText}>{props.review.noStars}</Text>
+            <Text style={styles.noStarsText}>{props.review.rating}</Text>
             <MaterialIcons
               style={{paddingTop: Dimensions.SIZE_XS}}
               name={'star'}
@@ -32,9 +43,7 @@ const ReviewListItem = (props: {review: any}) => {
               color="#666"
             />
           </View>
-          <Text style={styles.reviewDate}>
-            {props?.review?.reviewDate?.toDateString()}
-          </Text>
+          <Text style={styles.reviewDate}>{props?.review?.reviewDate}</Text>
         </View>
       </View>
       <View style={styles.rightHint}>

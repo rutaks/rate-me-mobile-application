@@ -1,11 +1,12 @@
 import {StackActions, useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, Image, View, Text} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {Avatar, BasicTopBar, Button, EditProfileRow} from '../../components';
 import {routingConfig} from '../../config/routing-config';
 import {ButtonStyle} from '../../enums';
 import {Dimensions, Typography} from '../../styles';
+import {decodeAccessToken} from '../../utils/jwt.util';
 import {displayLongMessage} from '../../utils/prompts.util';
 import {setAccessToken} from '../../utils/token-storage.util';
 import {styles} from './ProfileScreen.styles';
@@ -18,6 +19,19 @@ import {styles} from './ProfileScreen.styles';
  */
 const ProfileScreen = () => {
   const navigation = useNavigation();
+  const [profile, setProfile] = useState<any>({});
+
+  useEffect(() => {
+    const readToken = async () => {
+      const decodedToken: any = await decodeAccessToken();
+      setProfile(decodedToken);
+    };
+    readToken();
+  }, []);
+
+  console.log('profile');
+  console.log(profile);
+
   return (
     <SafeAreaView style={styles.fill}>
       <ScrollView contentContainerStyle={styles.fill}>
@@ -34,18 +48,21 @@ const ProfileScreen = () => {
         <View style={styles.avatarContainer}>
           <Avatar
             imageStyles={styles.avatar}
-            source={require('../../../assets/images/avatar.png')}
+            source={
+              profile.profilePic
+                ? {uri: profile.profilePic}
+                : require('../../../assets/images/avatar.png')
+            }
           />
           <View style={styles.profileInfo}>
-            <Text style={styles.name}>John Doe</Text>
-            <Text style={{...Typography.caption}}>yveshonore14@gmail.com</Text>
+            <Text numberOfLines={1} style={styles.name}>
+              {profile.names}
+            </Text>
+            <Text style={{...Typography.caption}}>{profile.sub}</Text>
           </View>
         </View>
-        <EditProfileRow title="Edit Phone Number" value="+250 789 427 561" />
-        <EditProfileRow
-          title="Edit Display Name"
-          value="Yves Honore Bisemage"
-        />
+        <EditProfileRow title="Edit Phone Number" value={profile.phone} />
+        <EditProfileRow title="Edit Display Name" value={profile.names} />
         <EditProfileRow
           title="Edit Password"
           value="Edit your current RateMe password"

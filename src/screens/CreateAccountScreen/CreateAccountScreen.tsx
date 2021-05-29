@@ -11,6 +11,9 @@ import {hasError} from '../../utils/formik.util';
 import useSignUp from '../../hooks/auth/useSignUp';
 import useHandleState from '../../hooks/useHandleState';
 import {displayLongMessage} from '../../utils/prompts.util';
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 /**
  * Function component representing Forgot password screen
  * @param props
@@ -55,14 +58,18 @@ const CreateAccountScreen = ({
               password: '',
             }}
             validationSchema={Yup.object().shape({
-              email: Yup.string().required('Email is required'),
-              phone: Yup.number().required('Phone is required'),
+              email: Yup.string()
+                .required('Email is required')
+                .email('Invalid email'),
+              phone: Yup.string()
+                .required('Phone number is required')
+                .matches(phoneRegExp, 'Phone number is not valid'),
               firstName: Yup.string().required('First name is required'),
               lastName: Yup.string().required('Last name is required'),
               password: Yup.string().required('Password is required'),
             })}
             onSubmit={(values) => {
-              signUpHook.sendRequest(values);
+              signUpHook.sendRequest({...values, gender: 'MALE'});
             }}>
             {(formikProps) => {
               return (

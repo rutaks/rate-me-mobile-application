@@ -29,7 +29,6 @@ const ProfileScreen = () => {
     readToken();
   }, []);
 
-  console.log('profile');
   console.log(profile);
 
   return (
@@ -61,12 +60,11 @@ const ProfileScreen = () => {
             <Text style={{...Typography.caption}}>{profile.sub}</Text>
           </View>
         </View>
-        <EditProfileRow title="Edit Phone Number" value={profile.phone} />
-        <EditProfileRow title="Edit Display Name" value={profile.names} />
         <EditProfileRow
-          title="Edit Password"
-          value="Edit your current RateMe password"
+          title={profile.phone || 'No Phone Number'}
+          value={profile.phone}
         />
+        <EditProfileRow title={profile.names} />
         <View
           style={{
             paddingTop: Dimensions.SIZE_XL,

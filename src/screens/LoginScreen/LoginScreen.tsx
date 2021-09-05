@@ -114,11 +114,11 @@ const LoginScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
                       formikProps.handleSubmit();
                     }}
                   />
-                  <Button
+                  {/* <Button
                     text="Forgot Password?"
                     type={ButtonStyle.DEFAULT}
                     onClick={navigateToForgotPassword}
-                  />
+                  /> */}
                   <Button
                     text="CREATE ACCOUNT"
                     type={ButtonStyle.SECONDARY}

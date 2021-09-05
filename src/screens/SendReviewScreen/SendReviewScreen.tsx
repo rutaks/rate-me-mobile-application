@@ -152,13 +152,14 @@ const SendReviewScreen = ({
             </View>
             <Text style={styles.reviewText}>Review</Text>
             <Formik
-              initialValues={{description: ''}}
+              initialValues={{description: '', plate: ''}}
               validationSchema={Yup.object().shape({
                 description: Yup.string().required('Description is required'),
               })}
               onSubmit={(values) => {
+                const finalReview = `${values.description} - ${values.plate}`;
                 submitReviewHook.sendRequest(reviewerId, {
-                  ...values,
+                  description: finalReview,
                   revieweeId: personToReviewId,
                   rating: noStars,
                 });
@@ -177,8 +178,19 @@ const SendReviewScreen = ({
                         formikProps.setFieldTouched('description')
                       }
                     />
+                    <TextInput
+                      style={styles.reviewTextArea}
+                      placeholder="Plate No."
+                      textAlignVertical={'top'}
+                      multiline={true}
+                      numberOfLines={1}
+                      onChangeText={formikProps.handleChange('plate')}
+                      onSubmitEditing={() =>
+                        formikProps.setFieldTouched('plate')
+                      }
+                    />
                     <Text style={styles.errorLabel}>
-                      {formikProps.errors.description}
+                      {formikProps.errors.plate}
                     </Text>
                     <Button
                       isLoading={submitReviewHook.isLoading}

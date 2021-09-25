@@ -158,10 +158,16 @@ const SendReviewScreen = ({
               })}
               onSubmit={(values) => {
                 const finalReview = `${values.description} - ${values.plate}`;
+                console.log({
+                  description: finalReview,
+                  revieweeId: personToReviewId,
+                  rating: noStars + 1,
+                });
+
                 submitReviewHook.sendRequest(reviewerId, {
                   description: finalReview,
                   revieweeId: personToReviewId,
-                  rating: noStars,
+                  rating: noStars + 1,
                 });
               }}>
               {(formikProps) => {

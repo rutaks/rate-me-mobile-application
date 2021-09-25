@@ -72,7 +72,7 @@ const ProfileScreen = () => {
             paddingRight: Dimensions.SIZE_XL,
           }}>
           <Button
-            type={ButtonStyle.DANGER}
+            type={ButtonStyle.PRIMARY}
             text="LOGOUT"
             onClick={() => {
               setAccessToken('');

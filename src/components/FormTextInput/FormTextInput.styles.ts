@@ -7,13 +7,13 @@ export const styles = StyleSheet.create({
     paddingBottom: Dimensions.SIZE_SM,
   },
   container: {
-    marginBottom: 8,
+    marginBottom: Dimensions.SIZE_XS,
     width: '100%',
     height: Dimensions.WINDOW_HEIGHT / 15,
     alignItems: 'center',
     backgroundColor: Colors.DARK_GRAY,
     flexDirection: 'row',
-    borderRadius: 4,
+    borderRadius: Dimensions.SIZE_XS / 2,
     paddingLeft: Dimensions.SIZE_M,
   },
   iconStyle: {

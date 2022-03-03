@@ -4,6 +4,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
 import {styles} from './FormTextInput.styles';
 import {FormTextInputProps} from '../../interfaces/form-text-input.props.interface';
+import {Dimensions} from '../../styles';
+import {SecureTextVisibilityButton} from './components';
 // import {SecureTextVisibilityButton} from './components';
 
 const FormTextInput = ({
@@ -24,7 +26,7 @@ const FormTextInput = ({
       <View style={[styles.container, textContainerStyle]}>
         {icon && (
           <View style={styles.iconStyle}>
-            <MaterialIcons name={icon} size={19} color="#666" />
+            <MaterialIcons name={icon} size={Dimensions.SIZE_M} color="#666" />
           </View>
         )}
         <TextInput
@@ -35,12 +37,12 @@ const FormTextInput = ({
           style={styles.input}
           placeholder={placeholder}
         />
-        {/* <SecureTextVisibilityButton
-          isTextHidden={isTextHidden}
-          setIsTextHidden={setIsTextHidden}
+        <SecureTextVisibilityButton
+          isTextHidden={true}
+          setIsTextHidden={() => {}}
           secureTextEntry={rest.secureTextEntry}
           style={styles.iconStyle}
-        /> */}
+        />
       </View>
       {error && <Text style={styles.error}>{error}</Text>}
     </View>

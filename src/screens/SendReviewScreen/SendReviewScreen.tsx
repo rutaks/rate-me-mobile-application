@@ -1,5 +1,5 @@
 import {NavigationProp, Route} from '@react-navigation/native';
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {SafeAreaView} from 'react-navigation';
 import {
   ActivityIndicator,
@@ -18,8 +18,6 @@ import {styles} from './SendReviewScreen.styles';
 import {Colors, Dimensions, Typography} from '../../styles';
 import useGetReviewById from '../../hooks/useGetReviewById';
 import useSubmitReview from '../../hooks/useSubmitReview';
-import {decodeAccessToken} from '../../utils/jwt.util';
-import useHandleState from '../../hooks/useHandleState';
 import {displayLongMessage} from '../../utils/prompts.util';
 
 /**
@@ -30,16 +28,13 @@ import {displayLongMessage} from '../../utils/prompts.util';
  */
 const SendReviewScreen = ({
   navigation,
-  route,
 }: {
   navigation: NavigationProp<any, any>;
   route: Route<any, any>;
 }) => {
-  const {personToReviewId}: any = route?.params;
   const getReviewByIdHook = useGetReviewById();
   const submitReviewHook = useSubmitReview();
-  const [reviewerId, setReviewerId] = useState<string>('');
-  const [personToReview, setPersonToReview] = useState<{
+  const [personToReview] = useState<{
     email?: string;
     gender?: string;
     id?: string;
@@ -55,40 +50,6 @@ const SendReviewScreen = ({
       navigation.navigate(routingConfig.screens.Activity);
     });
   };
-
-  useHandleState(submitReviewHook, {
-    onSuccess: () => {
-      displayLongMessage('Review was added');
-      navigateToGiveList();
-    },
-    onError: () => {
-      displayLongMessage(
-        `Could not Submit review Error: ${submitReviewHook.error}`,
-      );
-    },
-    onLoading: () => {},
-  });
-
-  useEffect(() => {
-    if (getReviewByIdHook.isSuccess) {
-      const {payload} = getReviewByIdHook.successResponse;
-      setPersonToReview(payload);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getReviewByIdHook.isSuccess]);
-
-  useEffect(() => {
-    getReviewByIdHook.sendRequest(personToReviewId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const setId = async () => {
-      const decodedToken: any = await decodeAccessToken();
-      setReviewerId(decodedToken?.user_id);
-    };
-    setId();
-  }, []);
 
   return (
     <SafeAreaView style={styles.fill}>
@@ -156,19 +117,9 @@ const SendReviewScreen = ({
               validationSchema={Yup.object().shape({
                 description: Yup.string().required('Description is required'),
               })}
-              onSubmit={(values) => {
-                const finalReview = `${values.description} - ${values.plate}`;
-                console.log({
-                  description: finalReview,
-                  revieweeId: personToReviewId,
-                  rating: noStars + 1,
-                });
-
-                submitReviewHook.sendRequest(reviewerId, {
-                  description: finalReview,
-                  revieweeId: personToReviewId,
-                  rating: noStars + 1,
-                });
+              onSubmit={(_) => {
+                displayLongMessage('Review was added');
+                navigateToGiveList();
               }}>
               {(formikProps) => {
                 return (

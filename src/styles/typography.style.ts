@@ -1,12 +1,13 @@
 import {StyleSheet} from 'react-native';
 import Dimensions from './dimensions.style';
 import Colors from './colors.style';
+import {Font} from '.';
 
 export default StyleSheet.create({
   title: {
     color: Colors.BLACK,
     fontSize: Dimensions.FONT_SIZE_XL,
-    fontFamily: 'Raleway-ExtraBold',
+    ...Font.medium,
   },
   subtitle: {
     fontFamily: 'Raleway-ExtraBold',

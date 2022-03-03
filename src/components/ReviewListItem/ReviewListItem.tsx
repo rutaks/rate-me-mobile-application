@@ -13,26 +13,18 @@ const ReviewListItem = (props: {review: any}) => {
   return (
     <TouchableOpacity
       style={styles.container}
+      onLongPress={() => console.log('LONG PRESS')}
       onPress={() =>
         navigation.navigate(routingConfig.screens.ReviewDetails, {
           review: props.review,
         })
       }>
       <View style={styles.leftArea}>
-        <Avatar
-          imageStyles={styles.avatar}
-          source={
-            props.review.reviewee.profilePic
-              ? {uri: props.review.reviewee.profilePic}
-              : require('../../../assets/images/avatar.png')
-          }
-        />
+        <Avatar imageStyles={styles.avatar} source={props.review.profilePic} />
       </View>
       <View style={styles.middleArea}>
-        <Text style={styles.reviewerName}>{props.review.reviewee.names}</Text>
-        <Text style={{...Typography.caption}}>
-          {props.review.reviewee.email}
-        </Text>
+        <Text style={styles.reviewerName}>{props.review.names}</Text>
+        <Text style={{...Typography.caption}}>{props.review.phoneNo}</Text>
         <View style={styles.reviewStarsArea}>
           <View style={styles.starsRow}>
             <Text style={styles.noStarsText}>{props.review.rating}</Text>
@@ -43,7 +35,7 @@ const ReviewListItem = (props: {review: any}) => {
               color="#666"
             />
           </View>
-          <Text style={styles.reviewDate}>{props?.review?.reviewDate}</Text>
+          <Text style={styles.reviewDate}>{props.review.reviewDate}</Text>
         </View>
       </View>
       <View style={styles.rightHint}>

@@ -1,18 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {
-  Image,
-  FlatList,
-  View,
-  ActivityIndicator,
-  RefreshControl,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Image, FlatList, RefreshControl} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {ActivityHeader, BasicTopBar, ReviewListItem} from '../../components';
 import useGetReviews from '../../hooks/useGetReviews';
-import useHandleState from '../../hooks/useHandleState';
-import {Colors} from '../../styles';
-import {decodeAccessToken} from '../../utils/jwt.util';
-import {displayLongMessage} from '../../utils/prompts.util';
 import {styles} from './ActivityScreen.styles';
 
 /**
@@ -22,42 +12,92 @@ import {styles} from './ActivityScreen.styles';
  * @version 1.0
  */
 const ActivityScreen = () => {
-  const [reviews, setReviews] = useState<any[]>();
-  const [reviewerId, setReviewerId] = useState<string>('');
+  const [reviews] = useState<any[]>([
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '1',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      phoneNo: '07800000000',
+      rating: 0,
+      reviewDate: '12.02.2022',
+    },
+    {
+      id: '2',
+      phoneNo: '07800000001',
+      profilePic:
+        'https://monoloop.com/wp-content/uploads/2017/08/photo-1511367461989-f85a21fda167.jpg',
+      names: 'Sam Rutakay',
+      rating: 4,
+      reviewDate: '12.02.2022',
+    },
+  ]);
+  const [reviewerId] = useState<string>('');
   const getReviewsHook = useGetReviews();
-  useEffect(() => {
-    if (reviewerId) {
-      getReviewsHook.sendRequest(reviewerId);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reviewerId]);
 
-  useEffect(() => {
-    const setId = async () => {
-      const decodedToken: any = await decodeAccessToken();
-      setReviewerId(decodedToken?.user_id);
-    };
-    setId();
-  }, []);
-
-  useHandleState(getReviewsHook, {
-    onSuccess: () => {
-      const reviewArr = getReviewsHook.successResponse.payload;
-      setReviews(reviewArr);
-    },
-    onError: () => {
-      displayLongMessage(`Could not get data Error: ${getReviewsHook.error}`);
-    },
-    onLoading: () => {},
-  });
-
-  if (!reviewerId || getReviewsHook.isLoading) {
-    return (
-      <View style={styles.loader}>
-        <ActivityIndicator size="large" color={Colors.PRIMARY} />
-      </View>
-    );
-  }
   return (
     <SafeAreaView style={styles.fill}>
       <BasicTopBar

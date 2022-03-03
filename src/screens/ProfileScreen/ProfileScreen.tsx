@@ -1,12 +1,11 @@
 import {StackActions, useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, Image, View, Text} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {Avatar, BasicTopBar, Button, EditProfileRow} from '../../components';
 import {routingConfig} from '../../config/routing-config';
 import {ButtonStyle} from '../../enums';
 import {Dimensions, Typography} from '../../styles';
-import {decodeAccessToken} from '../../utils/jwt.util';
 import {displayLongMessage} from '../../utils/prompts.util';
 import {setAccessToken} from '../../utils/token-storage.util';
 import {styles} from './ProfileScreen.styles';
@@ -19,15 +18,13 @@ import {styles} from './ProfileScreen.styles';
  */
 const ProfileScreen = () => {
   const navigation = useNavigation();
-  const [profile, setProfile] = useState<any>({});
-
-  useEffect(() => {
-    const readToken = async () => {
-      const decodedToken: any = await decodeAccessToken();
-      setProfile(decodedToken);
-    };
-    readToken();
-  }, []);
+  const [profile] = useState<any>({
+    profilePic:
+      'https://gravatar.com/avatar/1f82b0492a0a938288c2d5b70534a1fb?s=400&d=robohash&r=x',
+    names: 'Samuel Rutakayile',
+    phone: '+250780000000',
+    sub: 'A Plain Robot',
+  });
 
   console.log(profile);
 
@@ -64,7 +61,7 @@ const ProfileScreen = () => {
           title={profile.phone || 'No Phone Number'}
           value={profile.phone}
         />
-        <EditProfileRow title={profile.names} />
+        <EditProfileRow title={profile.names} value="" />
         <View
           style={{
             paddingTop: Dimensions.SIZE_XL,

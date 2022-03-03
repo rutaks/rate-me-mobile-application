@@ -111,7 +111,7 @@ const LoginScreen = ({navigation}: {navigation: NavigationProp<any, any>}) => {
                     isLoading={loginHook.isLoading}
                     type={ButtonStyle.PRIMARY}
                     onClick={() => {
-                      formikProps.handleSubmit();
+                      navigateToHome();
                     }}
                   />
                   {/* <Button

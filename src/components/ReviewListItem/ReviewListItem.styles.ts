@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     flex: 3,
   },
   reviewerName: {
-    ...Typography.subtitle,
+    ...Typography.title,
     color: Colors.BLACK,
     paddingBottom: Dimensions.SIZE_XS,
   },

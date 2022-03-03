@@ -21,15 +21,8 @@ const ReviewDetailsScreen = ({route}: {route: Route<any, any>}) => {
       <ScrollView contentContainerStyle={styles.fill}>
         <BasicTopBar icon="arrow-back" />
         <View style={styles.content}>
-          <Avatar
-            imageStyles={styles.avatar}
-            source={
-              review.reviewee.profilePic
-                ? {uri: review.reviewee.profilePic}
-                : require('../../../assets/images/avatar.png')
-            }
-          />
-          <Text style={styles.reviewerName}>{review.reviewee.names}</Text>
+          <Avatar imageStyles={styles.avatar} source={review.profilePic} />
+          <Text style={styles.reviewerName}>{review.names}</Text>
           <Text
             style={{...Typography.body, paddingBottom: Dimensions.SIZE_XS / 2}}>
             Yves Honore Bisemage
@@ -55,10 +48,10 @@ const ReviewDetailsScreen = ({route}: {route: Route<any, any>}) => {
               />
             ))}
           </View>
-          <Text style={styles.reviewText}>{review.description}</Text>
-          <Text style={styles.reviewDate}>{review?.reviewDate}</Text>
+          <Text style={styles.reviewText}>{"He's a good guy"}</Text>
+          <Text style={styles.reviewDate}>{'20.02.2022'}</Text>
           <Text style={styles.reviewReceivedByText}>
-            Review received by {review?.reviewer.names}
+            Review received by {review?.names}
           </Text>
         </View>
       </ScrollView>

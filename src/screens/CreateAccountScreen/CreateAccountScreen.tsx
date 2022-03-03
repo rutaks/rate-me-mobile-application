@@ -8,8 +8,6 @@ import {NavigationProp} from '@react-navigation/native';
 import {routingConfig} from '../../config/routing-config';
 import {ButtonStyle} from '../../enums';
 import {hasError} from '../../utils/formik.util';
-import useSignUp from '../../hooks/auth/useSignUp';
-import useHandleState from '../../hooks/useHandleState';
 import {displayLongMessage} from '../../utils/prompts.util';
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -25,24 +23,11 @@ const CreateAccountScreen = ({
 }: {
   navigation: NavigationProp<any, any>;
 }) => {
-  const signUpHook = useSignUp();
   const navigateToLogin = (): any => {
     requestAnimationFrame(() => {
       navigation.navigate(routingConfig.screens.Login);
     });
   };
-
-  useHandleState(signUpHook, {
-    onSuccess: () => {
-      // const {token} = signUpHook.successResponse.payload;
-      displayLongMessage('Sign up successful');
-      navigateToLogin();
-    },
-    onError: () => {
-      displayLongMessage(`Could not Sign up Error: ${signUpHook.error}`);
-    },
-    onLoading: () => {},
-  });
 
   return (
     <SafeAreaView style={styles.fill}>
@@ -68,9 +53,7 @@ const CreateAccountScreen = ({
               lastName: Yup.string().required('Last name is required'),
               password: Yup.string().required('Password is required'),
             })}
-            onSubmit={(values) => {
-              signUpHook.sendRequest({...values, gender: 'MALE'});
-            }}>
+            onSubmit={(_) => {}}>
             {(formikProps) => {
               return (
                 <Fragment>
@@ -146,11 +129,10 @@ const CreateAccountScreen = ({
                     }
                   />
                   <Button
-                    isLoading={signUpHook.isLoading}
                     text="CREATE ACCOUNT"
                     type={ButtonStyle.PRIMARY}
                     onClick={() => {
-                      formikProps.handleSubmit();
+                      displayLongMessage('Feature not here yet');
                     }}
                   />
                   <Button
